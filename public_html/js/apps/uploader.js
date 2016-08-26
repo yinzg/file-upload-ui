@@ -1,5 +1,5 @@
 var uploader = function ($) {
-
+    var test = 1233333;
     /**
      * 获取文件大小并转换成KB或MB
      * @param {type} byteSize:文件原始大小
@@ -72,6 +72,7 @@ var uploader = function ($) {
     });
 
     return{
+        test: test
     };
 }(jQuery);
 
