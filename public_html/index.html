@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>测试文件上传</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="plugs/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .upload-input{width: 100px;overflow: hidden;}
+            .upload-button{width: 54px;height: 34px;border:solid 1px #2FAAE2;border-radius: 8px;background:#fff !important;color:#000;cursor: pointer;text-align: center;}
+            .process-view{margin-top: 20px;}
+            .process-bar{width: 0;height: 5px;margin-top: 20px;border-radius:2px;background-color: #E5E5E5;}
+            .file-cancle{display: none;}
+            .file-cancle a{width: 16px;height: 16px;float: right;background-image: url("images/close-panel.png");}
+        </style>
+    </head>
+    <body>
+        <form action="">
+            <div class="row" style="margin: 50px auto;">
+
+                <div class="col-xs-3 file-select-view">
+                    <input id="image_file2" name="image_file2" type="file" onchange="fileSelected2()" accept="image/png,image/jpeg,image/jpg,image/bmp" />
+                    <div class="process-view">
+                        <div class="file-cancle">					
+                            <a href="javascript:void(0)"></a>				
+                        </div>					
+                        <span class="fileName"></span><br>		
+                        <div class="process-bar"></div>		
+                    </div>
+                </div>
+
+                <div class="col-xs-1">
+                    <a href="javascript:void(0)" class="btn upload upload-button">上传</a>
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <script src="js/libs/jquery.3.1.0.min.js"></script>
+        <script src="js/libs/jQuery.md5_1.js"></script>
+        <script src="plugs/bootstrap/bootstrap.min.js"></script>
+        <script src="js/apps/uploader.js"></script>
+
+    </body>
+</html>
