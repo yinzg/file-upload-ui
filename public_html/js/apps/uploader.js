@@ -48,10 +48,12 @@ var uploader = function ($) {
 
         $('.file-name').trigger('GET-FILESIZE', {size: fileSize});
         $('.file-name').trigger('GET-FILETYPE', {type: fileType});
-
-        $('.file-info-panel').css('display', 'block');
-        $('.file-info-panel').css('border', 'solid 1px #E5E5E5');
-        $('.file-info-panel').css('padding', '10px');
+        var panelStyle = {
+            'display': 'block',
+            'border': 'solid 1px #E5E5E5',
+            'padding': '10px'
+        };
+        $('.file-info-panel').css(panelStyle);
         $('.file-cancle').append('<a href="javascript:void(0)"></a>');
         $('.file-cancle').addClass('file-close');
 
@@ -71,19 +73,26 @@ var uploader = function ($) {
                 success: function (data, textStatus, jqXHR) {
                     if (textStatus === 'success') {
                         var width = $('.file-select-view').width() - 20;
-                        $('.process-bar').css('width', width);
-                        $('.process-bar').css('background-color', 'green');
-                        $('.process-bar').css('transition', 'background-color 2s ease,width 2s ease');
-
+                        var barStyle = {
+                            'width': width,
+                            'background-color': 'green',
+                            'transition': 'background-color 2s ease,width 2s ease',
+                            '-webkit-transition': 'background-color 2s ease,width 2s ease'
+                        };
+                        $('.process-bar').css(barStyle);
                         setTimeout(function () {
                             $('.upload-status').text("上传完成！");
                             console.log('upload success');
                         }, 2000);
 
                         setTimeout(function () {
-                            $(".file-info-panel").fadeOut(300);
-                            $('.process-bar').css('background-color', '#E5E5E5');
-                            $('.process-bar').css('width', 0);
+//                            $(".file-info-panel").fadeOut(300);
+                            $('.file-cancle').trigger('CLOSE-FILE-INFO-PANEL');
+                            var barStyle = {
+                                'background-color': '#E5E5E5',
+                                'width': 0
+                            };
+                            $('.process-bar').css(barStyle);
                             $('.upload-status').text('');
                         }, 3000);
                     }
@@ -94,21 +103,28 @@ var uploader = function ($) {
     });
 
     /**
-     * 关闭文件信息窗口事件
+     * 点击文件信息窗口关闭按钮事件
      */
     $('.file-cancle').click(function () {
-        $('.file-info-panel').fadeOut(1000);
+        $('.file-cancle').trigger('CLOSE-FILE-INFO-PANEL');
     });
 
     /**
-     * 添加事件：是否选择文件
+     * 添加自定义事件：关闭文件信息窗口
+     */
+    $('.file-cancle').bind('CLOSE-FILE-INFO-PANEL', function () {
+        $('.file-info-panel').fadeOut(500);
+    });
+
+    /**
+     * 添加自定义事件：是否选择文件
      */
     $('.file-name').bind('NOT-SELECTED-FILE', function () {
         alert("请选择文件后点击上传！");
     });
 
     /**
-     * 添加事件：换算文件大小单位，并判断文件是否大于指定大小
+     * 添加自定义事件：换算文件大小单位，并判断文件是否大于指定大小
      */
     $('.file-name').bind('GET-FILESIZE', function (evt, param) {
         console.log('get file size:' + param.size);
@@ -120,11 +136,12 @@ var uploader = function ($) {
     });
 
     /**
-     * 添加事件：匹配文件类型
+     * 添加自定义事件：匹配文件类型
      */
     $('.file-name').bind('GET-FILETYPE', function (evt, param) {
         console.log('get file type:' + param.type);
         if (!isRequiredTypeImage(param.type)) {
+            fileCache = {};
             alert("请上传jpeg、jpg、png、bmp格式的图片！");
         }
     });
