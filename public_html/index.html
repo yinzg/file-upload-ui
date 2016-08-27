@@ -6,44 +6,94 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="plugs/bootstrap/bootstrap.min.css" rel="stylesheet">
         <style>
-            .upload-input{width: 100px;overflow: hidden;}
-            .upload-button{width: 54px;height: 34px;border:solid 1px #2FAAE2;border-radius: 8px;background:#fff !important;color:#000;cursor: pointer;text-align: center;}
-            .process-view{margin-top: 20px;}
-            .process-bar{width: 0;height: 5px;margin-top: 20px;border-radius:2px;background-color: #E5E5E5;}
-            .file-cancle{display: none;}
-            .file-cancle a{width: 16px;height: 16px;float: right;background-image: url("images/close-panel.png");}
+            .upload-button{
+                width: 54px;
+                height: 34px;
+                border:solid 1px #2FAAE2;
+                border-radius: 8px;
+                background:#fff !important;
+                color:#000;
+                cursor: pointer;
+                text-align: center;
+            }
+            .file-info-panel{
+                margin-top: 20px ;
+            }
+            .process-bar{
+                width: 0;
+                height: 5px;
+                margin-top: 20px;
+                border-radius:2px;
+                background-color: #E5E5E5;
+            }
+            .file-close{
+                width: 16px;
+                height: 16px;
+                float: right;
+                background-image: url("images/close-panel.png");
+            }
+            .upload-status{
+                margin-left: 50px;
+            }
+
+            .file-select {
+                position: relative;
+                display: inline-block;
+                background: #D0EEFF;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid #99D3F5;
+                border-radius: 4px;
+                padding: 4px 12px;
+                overflow: hidden;
+                color: #1E88C7;
+                text-decoration: none;
+                text-align: center;
+                text-indent: 0;
+                line-height: 20px;
+                cursor: pointer;
+            }
+            .file-select input {
+                position: absolute;
+                font-size: 100px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+            }
+            .file-select:hover {
+                background: #AADFFD;
+                border-color: #78C3F3;
+                color: #004974;
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
-        <form action="">
-            <div class="row" style="margin: 50px auto;">
+        <div class="row" style="margin: 50px auto;">
 
-                <div class="col-xs-3 file-select-view">
+            <div class="col-xs-3 file-select-view">
+                <a href="javascript:void(0);" class="file-select">
+                    选择文件
                     <input id="image_file2" name="image_file2" type="file" accept="image/png,image/jpeg,image/jpg,image/bmp" />
-                    <div class="process-view">
-                        <div class="file-cancle">					
-                            <a href="javascript:void(0)"></a>				
-                        </div>					
-                        <span class="fileName"></span><br>		
-                        <div class="process-bar"></div>		
-                    </div>
-                </div>
+                </a>
 
-                <div class="col-xs-1">
-                    <a href="javascript:void(0)" class="btn upload upload-button">上传</a>
+                <div class="file-info-panel">
+                    <div class="file-cancle"></div>
+                    <span class="file-name"></span><span class="upload-status"></span><br>
+                    <div class="process-bar"></div>
                 </div>
-
             </div>
 
-        </form>
+            <div class="col-xs-1">
+                <a href="javascript:void(0)" class="btn upload upload-button">上传</a>
+            </div>
 
+        </div>
 
         <script src="js/libs/jquery.3.1.0.min.js"></script>
         <script src="js/libs/jQuery.md5_1.js"></script>
         <script src="plugs/bootstrap/bootstrap.min.js"></script>
         <script src="js/apps/uploader.js"></script>
-        <script>
-            console.log(uploader.test)
-        </script>
     </body>
 </html>
